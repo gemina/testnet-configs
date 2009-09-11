@@ -1,0 +1,10 @@
+Example inspircd.conf:
+
+<include executable="../conf/remote-exec irc1">
+
+
+This will use "irc1.conf" as the base for your ircd's configuration.
+The ircd-specific configuration files should include port bindings,
+administration information, and link blocks for services.
+
+All other configuration elements should be in a shared config file.

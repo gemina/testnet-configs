@@ -1,0 +1,5 @@
+inspircd.conf
+update-log
+*.example
+*.pem
+*.db

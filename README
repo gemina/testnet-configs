@@ -1,6 +1,9 @@
+This folder should be inspircd/conf/qa-net
+remote-exec needs to be copied to bin, make sure you have a good copy
+
 Example inspircd.conf:
 
-<include executable="../conf/remote-exec irc1">
+<include executable="./remote-exec irc1">
 
 
 This will use "irc1.conf" as the base for your ircd's configuration.

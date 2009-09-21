@@ -1,5 +1,4 @@
-inspircd.conf
 update-log
-*.example
+permchannels.conf
 *.pem
 *.db

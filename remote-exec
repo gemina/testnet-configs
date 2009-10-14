@@ -1,6 +1,6 @@
 #!/bin/sh
-cd qa-net
+cd conf/qa-net
 git pull >> update-log 2>&1
-echo '<include file="qa-net/'$1'.conf">'
+echo '<include file="conf/qa-net/'$1'.conf">'
 rev=`git rev-parse HEAD`
 echo '<alias text="CONFREV" replace="NOTICE $nick :Configuration rev ID is '$rev' for '$1'" operonly="yes">'

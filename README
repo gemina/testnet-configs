@@ -1,14 +1,19 @@
-This folder should be inspircd/run/qa-net
-remote-exec needs to be copied to a safe location such as bin.
-Verify it is not malicious if you are concerned about security
+This folder should be inspircd/run/conf/qa-net
 
-Example inspircd.conf:
+Example conf/inspircd.conf:
 
-<include executable="bin/remote-exec irc1">
+<include executable="conf/qa-net/remote-exec irc1">
 
 
-This will use "qa-net/irc1.conf" as the base for your ircd's configuration.
+This will use "conf/qa-net/irc1.conf" as the base for your ircd's configuration.
 The ircd-specific configuration files should include port bindings,
 administration information, and link blocks for services.
 
 All other configuration elements should be in a shared config file.
+
+If you are concerned about security, copy "remote-exec" to another location
+(such as bin), and include a "<path>" tag above the <include executable>".
+This will prevent a malicious configuration from adding malicious code to the
+inspircd process as a module or modifying the fetch script. Keep in mind that
+even with this restriction, someone able to add configuration tags can
+completely control the ircd.

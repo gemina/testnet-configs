@@ -1,19 +1,25 @@
-This folder should be inspircd/run/conf/qa-net
+Setup instructions:
 
-Example conf/inspircd.conf:
-
-<include executable="conf/qa-net/remote-exec irc1">
-
-
-This will use "conf/qa-net/irc1.conf" as the base for your ircd's configuration.
-The ircd-specific configuration files should include port bindings,
-administration information, and link blocks for services.
-
-All other configuration elements should be in a shared config file.
+1. Check out this repository to inspircd/run/conf/qa-net
+2. Choose a server name; in this example, we will use irc1.
+3. Create conf/inspircd.conf containing:
+   <include executable="conf/qa-net/remote-exec irc1">
+4. Create irc1.conf. This needs to contain:
+   * <server> and <admin> blocks
+   * <bind> tags for ports you listen on
+   * <log> tags for any logs you want to keep
+   * an <autoconnect> tag for the hub you want to connect to
+   * <include> tags for general, opers, links, and modules
+   You may find it eaiser to copy and edit an existing configuration file.
+5. Add a link block to links.conf. If you don't know your SSL fingerprint,
+   either leave it out to add later or use 'certtool -i < cert.pem' and copy
+   the MD5 fingerprint.
+6. Commit the changes:  git add .; git commit -m 'Add server'; git push
+7. Start up the ircd
 
 If you are concerned about security, copy "remote-exec" to another location
-(such as bin), and include a "<path>" tag above the <include executable>".
-This will prevent a malicious configuration from adding malicious code to the
-inspircd process as a module or modifying the fetch script. Keep in mind that
-even with this restriction, someone able to add configuration tags can
+(such as bin), and include a "<path>" tag above the "<include executable>".
+This will prevent a malicious configuration from causing inpsircd to load a
+module from the config repository or modifying the fetch script. Keep in mind
+that even with this restriction, someone able to add configuration tags can
 completely control the ircd.
